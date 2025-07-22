@@ -1,0 +1,6 @@
+@BibliotecaGrupoExito.Prestentation.Api_HostAddress = http://localhost:5010
+
+GET {{BibliotecaGrupoExito.Prestentation.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
