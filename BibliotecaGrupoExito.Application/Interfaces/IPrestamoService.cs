@@ -11,6 +11,7 @@ namespace BibliotecaGrupoExito.Application.Interfaces
     {
         Task<PrestamoResponse> RealizarPrestamoAsync(PrestamoRequest request);
         Task<IEnumerable<PrestamoResponse>> ObtenerPrestamosPorMaterialAsync(string identificacionUsuario);
+        Task<IEnumerable<PrestamoResponse>> ObtenerTodosLosPrestamosAsync();
 
     }
 }

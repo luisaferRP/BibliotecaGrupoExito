@@ -100,22 +100,47 @@ namespace BibliotecaGrupoExito.Application.Services
                 return Enumerable.Empty<PrestamoResponse>(); 
             }
 
-            var prestamos = await _prestamoRepository.GetActiveLoansByIsbnAsync(isbnMaterial);
-
-            var responses = new List<PrestamoResponse>();
-            foreach (var prestamo in prestamos)
+            var prestamos = await _prestamoRepository.GetActiveLoansByIsbnAsync(material.ISBN);
+            if (prestamos == null || !prestamos.Any())
             {
-                var usuario = await _usuarioRepository.GetByIdAsync(prestamo.UsuarioId);
-                responses.Add(new PrestamoResponse
-                {
-                    Exito = true,
-                    ISBN = material.ISBN,
-                    FechaPrestamo = prestamo.FechaPrestamo,
-                    FechaDevolucionEsperada = prestamo.FechaDevolucionEsperada,
-                });
+                return Enumerable.Empty<PrestamoResponse>();
             }
+
+            var responses = prestamos.Select(prestamo => new PrestamoResponse
+            {
+                Exito = true,
+                Mensaje = "Préstamo(s) encontrado(s) exitosamente.", 
+                ISBN = prestamo.Material?.ISBN,
+                IdentificacionUsuario = prestamo.Usuario?.Identificacion,
+                NombreUsuario = prestamo.Usuario?.Nombre,
+                //NombreMaterial = prestamo.Material?.Nombre,
+                FechaPrestamo = prestamo.FechaPrestamo,
+                FechaDevolucionEsperada = prestamo.FechaDevolucionEsperada,
+            }).ToList();
             return responses;
         }
 
+        public async Task<IEnumerable<PrestamoResponse>> ObtenerTodosLosPrestamosAsync()
+        {
+            var prestamos = await _prestamoRepository.GetAllLoansAsync();
+            if (prestamos == null || !prestamos.Any())
+            {
+                return Enumerable.Empty<PrestamoResponse>();
+            }
+            var responses = prestamos.Select(prestamo => new PrestamoResponse
+            {
+                Exito = true,
+                Mensaje = "Préstamo(s) encontrado(s) exitosamente.",
+                ISBN = prestamo.Material?.ISBN,
+                IdentificacionUsuario = prestamo.Usuario?.Identificacion,
+                NombreUsuario = prestamo.Usuario?.Nombre, 
+                //NombreMaterial = prestamo.Material?.Nombre, 
+                FechaPrestamo = prestamo.FechaPrestamo,
+                FechaDevolucionEsperada = prestamo.FechaDevolucionEsperada,
+       
+            }).ToList();
+
+            return responses;
+        }
     }
 }

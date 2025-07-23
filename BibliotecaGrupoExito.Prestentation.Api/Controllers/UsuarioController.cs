@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BibliotecaGrupoExito.Application.DTOs;
 using BibliotecaGrupoExito.Application.Interfaces;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BibliotecaGrupoExito.Prestentation.Api.Controllers
 {
@@ -15,7 +16,11 @@ namespace BibliotecaGrupoExito.Prestentation.Api.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpPost] 
+        [HttpPost]
+        [SwaggerOperation(
+            Summary = "Registar un usuario",
+            Description = "Este endpoint es para registrar un usuario,para porder realizar el prestamo"
+        )]
         [ProducesResponseType(typeof(UsuarioResponse), 200)] 
         [ProducesResponseType(typeof(UsuarioResponse), 400)] 
         public async Task<IActionResult> RegistrarUsuario([FromBody] UsuarioRequest request)

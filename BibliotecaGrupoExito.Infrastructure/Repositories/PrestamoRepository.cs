@@ -33,8 +33,14 @@ namespace BibliotecaGrupoExito.Infrastructure.Repositories
 
         public async Task<IEnumerable<Prestamo>> GetActiveLoansByIsbnAsync(string isbn)
         {
-            return await _context.Prestamos.Include(p => p.Material)
-                .Where(p => p.Material.ISBN.ToLower() == isbn.ToLower() && p.Activo).ToListAsync();
+            return await _context.Prestamos
+                                 .Include(p => p.Material) // Load the Material details
+                                 .Include(p => p.Usuario)  // Load the Usuario details
+                                 .Where(p => p.Material != null && p.Material.ISBN == isbn && p.Activo) // Filter by ISBN and Active status
+                                 .ToListAsync();
+
+            //return await _context.Prestamos.Include(p => p.Material)
+            //    .Where(p => p.Material.ISBN.ToLower() == isbn.ToLower() && p.Activo).ToListAsync();
         }
 
         public async Task UpdateAsync(Prestamo prestamo)
@@ -51,6 +57,14 @@ namespace BibliotecaGrupoExito.Infrastructure.Repositories
                 _context.Prestamos.Remove(prestamo);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Prestamo>> GetAllLoansAsync()
+        {
+            return await _context.Prestamos
+                                .Include(p => p.Material) 
+                                .Include(p => p.Usuario)  
+                                .ToListAsync();
         }
     }
 }

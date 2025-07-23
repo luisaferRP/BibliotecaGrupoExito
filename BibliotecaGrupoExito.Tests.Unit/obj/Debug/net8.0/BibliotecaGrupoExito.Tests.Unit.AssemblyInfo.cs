@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibliotecaGrupoExito.Tests.Unit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cec2fa4ed65fcf988b77a7b9314c2b08a8e8ee9f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5f032bf26c388faa750483c731a485a16aca38a")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibliotecaGrupoExito.Tests.Unit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibliotecaGrupoExito.Tests.Unit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

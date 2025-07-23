@@ -11,17 +11,28 @@ namespace BibliotecaGrupoExito.Domain.Extensions
             {
                 return false;
             }
-            //filter only numbers
-            var original = new string(isbn.Where(char.IsDigit).ToArray());
-
-            if(string.IsNullOrEmpty(original))
+            string trimmedIsbn = isbn.Trim();
+            if (trimmedIsbn.StartsWith("-"))
             {
                 return false;
             }
-            
-            var reversed = new string(original.Reverse().ToArray());
+            //filter only numbers
+            var cleanedDigits = new string(isbn.Where(char.IsDigit).ToArray());
 
-            return original.Equals(reversed);
+            if (string.IsNullOrEmpty(cleanedDigits))
+            {
+                return false;
+            }
+            else if(cleanedDigits == "0")
+            {
+                return false;
+            }
+
+          
+
+            var reversed = new string(cleanedDigits.Reverse().ToArray());
+
+            return cleanedDigits.Equals(reversed, StringComparison.Ordinal);
         }
 
         public static int SumDigits(this string isbn)

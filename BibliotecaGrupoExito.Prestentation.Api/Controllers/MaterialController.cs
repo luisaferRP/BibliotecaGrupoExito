@@ -2,6 +2,7 @@
 using BibliotecaGrupoExito.Application.Interfaces;
 using BibliotecaGrupoExito.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BibliotecaGrupoExito.Prestentation.Api.Controllers
 {
@@ -15,7 +16,11 @@ namespace BibliotecaGrupoExito.Prestentation.Api.Controllers
             _materialService = materialService;
         }
 
-        [HttpPost] 
+        [HttpPost]
+        [SwaggerOperation(
+            Summary = "Registar un material libro/revista",
+            Description = "Este endpoint es para listar todos los prestamos"
+        )]
         [ProducesResponseType(typeof(MaterialResponse), 200)] 
         [ProducesResponseType(typeof(MaterialResponse), 400)]
         public async Task<IActionResult> RegistrarMaterial([FromBody] MaterialRequest request)

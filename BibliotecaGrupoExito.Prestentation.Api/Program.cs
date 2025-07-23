@@ -4,6 +4,7 @@ using BibliotecaGrupoExito.Application.IoC;
 using BibliotecaGrupoExito.Infrastructure.IoC; 
 using BibliotecaGrupoExito.Infrastructure.Data; 
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,12 +33,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options=>
 {
+
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "Biblioteca Grupo Éxito API",
         Version = "v1",
         Description = "API para la gestión de materiales, usuarios y préstamos de la biblioteca del Grupo Éxito."
     });
+    options.EnableAnnotations();
 });
 
 var app = builder.Build();
