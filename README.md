@@ -46,6 +46,12 @@ El proyecto sigue una estructura de Arquitectura Limpia (Clean Architecture), qu
 La API expone los siguientes endpoints principales para la gestión de la biblioteca:
 
 ## Requisitos Previos
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Server](https://www.microsoft.com/sql-server/) o [SQL Server Express](https://www.microsoft.com/sql-server/sql-server-downloads)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) o [VS Code](https://code.visualstudio.com/)
+- Git
+- 
 1. Registrar Usuario
 Descripción: Permite crear un nuevo usuario en el sistema de la biblioteca.
 
