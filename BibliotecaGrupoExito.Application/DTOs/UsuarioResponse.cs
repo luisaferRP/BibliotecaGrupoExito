@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace BibliotecaGrupoExito.Application.DTOs
 {
-    public class PrestamoResponse
+    public class UsuarioResponse
     {
         public bool Exito { get; set; }
         public string Mensaje { get; set; } = string.Empty;
-
-        public DateTime? FechaPrestamo { get; set; }
-        public DateTime? FechaDevolucionEsperada { get; set; }
-        public string ISBN { get; set; } 
+        public Guid? Id { get; set; } 
+        public string? Identificacion { get; set; }
+        public string? NombreCompleto { get; set; }
     }
 }

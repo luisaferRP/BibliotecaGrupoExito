@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BibliotecaGrupoExito.Infrastructure.Data.Migrations
+namespace BibliotecaGrupoExito.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace BibliotecaGrupoExito.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ISBN = table.Column<long>(type: "bigint", nullable: false),
+                    ISBN = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     TipoMaterial = table.Column<int>(type: "int", nullable: false)
                 },

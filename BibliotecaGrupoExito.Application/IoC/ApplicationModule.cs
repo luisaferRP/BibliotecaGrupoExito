@@ -8,9 +8,9 @@ namespace BibliotecaGrupoExito.Application.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // Registrar servicios de aplicación
-            // (IPrestamoService se definirá en el siguiente paso)
             builder.RegisterType<PrestamoService>().As<IPrestamoService>().InstancePerLifetimeScope();
+            builder.RegisterType<MaterialService>().As<IMaterialService>().InstancePerLifetimeScope();
+            builder.RegisterType<UsuarioService>().As<IUsuarioService>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }

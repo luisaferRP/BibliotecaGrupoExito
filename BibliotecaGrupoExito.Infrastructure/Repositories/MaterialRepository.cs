@@ -36,22 +36,15 @@ namespace BibliotecaGrupoExito.Infrastructure.Repositories
             return await _context.Materiales.FindAsync(id);
         }
 
-        public async Task<Material?> GetByIsbnAsync(long isbn)
+        public async Task<Material?> GetByIsbnAsync(string isbn)
         {
-            return await _context.Materiales.FirstOrDefaultAsync(m => m.ISBN == isbn);
+            return await _context.Materiales.FirstOrDefaultAsync(m => m.ISBN.ToLower() == isbn.ToLower());
         }
 
-        public async Task<bool> IsMaterialAvailableAsync(long isbn)
+        public async Task<bool> IsMaterialAvailableAsync(string isbn)
         {
-            // Verifica si existe algún préstamo activo para este ISBN
             return await _context.Prestamos
-                                 .AnyAsync(p => p.Material.ISBN == isbn && p.Activo);
-        }
-
-        public async Task UpdateAsync(Material material)
-        {
-            _context.Materiales.Update(material);
-            await _context.SaveChangesAsync();
+                                 .AnyAsync(p => p.Material.ISBN.ToLower() == isbn.ToLower() && p.Activo);
         }
     }
 }

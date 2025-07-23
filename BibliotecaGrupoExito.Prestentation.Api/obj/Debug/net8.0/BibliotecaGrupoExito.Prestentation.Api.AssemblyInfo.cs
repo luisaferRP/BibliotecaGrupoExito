@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibliotecaGrupoExito.Prestentation.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4bbbb342def06700333db98120b942c6f32fe66")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32da278c654054e3197e0e1d9fd30e14f1d8d91b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibliotecaGrupoExito.Prestentation.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibliotecaGrupoExito.Prestentation.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BibliotecaGrupoExito.Domain.Entities;
-using BibliotecaGrupoExito.Domain.Enums; 
 
 namespace BibliotecaGrupoExito.Infrastructure.Data
 {
@@ -13,7 +9,6 @@ namespace BibliotecaGrupoExito.Infrastructure.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        // DbSet para cada una de tus entidades
         public DbSet<Material> Materiales { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Prestamo> Prestamos { get; set; }
@@ -22,28 +17,28 @@ namespace BibliotecaGrupoExito.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuración para la entidad Material
+            // Configuration for the Material entity
             modelBuilder.Entity<Material>(entity =>
             {
-                entity.HasKey(m => m.Id); // Define Id como clave primaria
-                entity.Property(m => m.ISBN).IsRequired(); // ISBN es requerido
-                entity.HasIndex(m => m.ISBN).IsUnique(); // ISBN debe ser único
-                entity.Property(m => m.Nombre).IsRequired().HasMaxLength(255); // Nombre es requerido y con longitud máxima
+                entity.HasKey(m => m.Id);
+                entity.Property(m => m.ISBN).IsRequired(); 
+                entity.HasIndex(m => m.ISBN).IsUnique(); 
+                entity.Property(m => m.Nombre).IsRequired().HasMaxLength(255); 
                 entity.Property(m => m.TipoMaterial)
                       .IsRequired()
-                      .HasConversion<int>(); // Mapea el enum TipoMaterial a un int en la DB
+                      .HasConversion<int>();
             });
 
-            // Configuración para la entidad Usuario
+            //Configuration for the User entity
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(u => u.Id);
                 entity.Property(u => u.Identificacion).IsRequired();
-                entity.HasIndex(u => u.Identificacion).IsUnique(); // Identificación debe ser única
+                entity.HasIndex(u => u.Identificacion).IsUnique();
                 entity.Property(u => u.Nombre).IsRequired().HasMaxLength(255);
             });
 
-            // Configuración para la entidad Prestamo
+            // Configuration for the Loan entity
             modelBuilder.Entity<Prestamo>(entity =>
             {
                 entity.HasKey(p => p.Id);
@@ -51,16 +46,16 @@ namespace BibliotecaGrupoExito.Infrastructure.Data
                 entity.Property(p => p.FechaDevolucionEsperada).IsRequired();
                 entity.Property(p => p.Activo).IsRequired();
 
-                // Relaciones
+                //Relationships
                 entity.HasOne(p => p.Material)
                       .WithMany(m => m.Prestamos)
                       .HasForeignKey(p => p.MaterialId)
-                      .OnDelete(DeleteBehavior.Restrict); // Evita borrado en cascada de Material
+                      .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(p => p.Usuario)
                       .WithMany(u => u.Prestamos)
                       .HasForeignKey(p => p.UsuarioId)
-                      .OnDelete(DeleteBehavior.Restrict); // Evita borrado en cascada de Usuario
+                      .OnDelete(DeleteBehavior.Restrict); 
             });
         }
     }

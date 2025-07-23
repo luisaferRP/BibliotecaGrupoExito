@@ -13,7 +13,8 @@ namespace BibliotecaGrupoExito.Domain.Interfaces
         Task AddAsync(Prestamo prestamo);
         Task UpdateAsync(Prestamo prestamo);
         Task DeleteAsync(Guid id);
-        Task<IEnumerable<Prestamo>> GetAssetLoansByIsbnAsync(string isbn);
+        Task<IEnumerable<Prestamo>> GetActiveLoansByIsbnAsync(string isbn);
         Task<IEnumerable<Prestamo>> GetLoansByUserIdAsync(Guid userId);
+
     }
 }

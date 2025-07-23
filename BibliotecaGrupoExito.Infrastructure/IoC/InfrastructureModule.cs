@@ -2,7 +2,7 @@
 using BibliotecaGrupoExito.Domain.Interfaces;
 using BibliotecaGrupoExito.Infrastructure.Data;
 using BibliotecaGrupoExito.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore; // Necesario para DbContextOptions
+using Microsoft.EntityFrameworkCore;
 
 namespace BibliotecaGrupoExito.Infrastructure.IoC
 {
@@ -17,15 +17,14 @@ namespace BibliotecaGrupoExito.Infrastructure.IoC
 
         protected override void Load(ContainerBuilder builder)
         {
-            // Registrar DbContext
             builder.Register(context =>
             {
                 var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-                optionsBuilder.UseSqlServer(_connectionString); // O .UseNpgsql para PostgreSQL
+                optionsBuilder.UseSqlServer(_connectionString);
                 return new ApplicationDbContext(optionsBuilder.Options);
-            }).InstancePerLifetimeScope(); // Una instancia del DbContext por cada ámbito de solicitud web
+            }).InstancePerLifetimeScope();
 
-            // Registrar Repositorios
+            //Register repositories
             builder.RegisterType<MaterialRepository>().As<IMaterialRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UsuarioRepository>().As<IUsuarioRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PrestamoRepository>().As<IPrestamoRepository>().InstancePerLifetimeScope();

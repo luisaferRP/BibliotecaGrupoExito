@@ -13,7 +13,6 @@ namespace BibliotecaGrupoExito.Domain.Interfaces
         Task<Material?> GetByIsbnAsync(string isbn);
         Task<bool> IsMaterialAvailableAsync(string isbn); 
         Task AddAsync(Material material);
-        Task UpdateAsync(Material material);
         Task DeleteAsync(Guid id);
 
     }

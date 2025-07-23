@@ -26,19 +26,31 @@ namespace BibliotecaGrupoExito.Infrastructure.Repositories
             return await _context.Prestamos.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Prestamo>> GetPrestamosActivosByIsbnAsync(long isbn)
+        public async Task<IEnumerable<Prestamo>> GetLoansByUserIdAsync(Guid userId)
         {
-            // Incluye el material para poder filtrar por ISBN
-            return await _context.Prestamos
-                                 .Include(p => p.Material) // Asegura que Material esté cargado
-                                 .Where(p => p.Material.ISBN == isbn && p.Activo)
-                                 .ToListAsync();
+            return await _context.Prestamos.Where(p => p.UsuarioId == userId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Prestamo>> GetActiveLoansByIsbnAsync(string isbn)
+        {
+            return await _context.Prestamos.Include(p => p.Material)
+                .Where(p => p.Material.ISBN.ToLower() == isbn.ToLower() && p.Activo).ToListAsync();
         }
 
         public async Task UpdateAsync(Prestamo prestamo)
         {
             _context.Prestamos.Update(prestamo);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var prestamo = await _context.Prestamos.FindAsync(id);
+            if (prestamo != null)
+            {
+                _context.Prestamos.Remove(prestamo);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

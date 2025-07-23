@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibliotecaGrupoExito.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b92091800935d02559b0e5dbc1dc2b8d9e9dcb3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4bbbb342def06700333db98120b942c6f32fe66")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibliotecaGrupoExito.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibliotecaGrupoExito.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

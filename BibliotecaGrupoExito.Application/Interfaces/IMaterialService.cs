@@ -7,10 +7,9 @@ using BibliotecaGrupoExito.Application.DTOs;
 
 namespace BibliotecaGrupoExito.Application.Interfaces
 {
-    public interface IPrestamoService
+    public interface IMaterialService
     {
-        Task<PrestamoResponse> RealizarPrestamoAsync(PrestamoRequest request);
-        Task<IEnumerable<PrestamoResponse>> ObtenerPrestamosPorMaterialAsync(string identificacionUsuario);
-
+        Task<MaterialResponse> RegistrarMaterialAsync(MaterialRequest request);
+        Task<MaterialResponse> EliminarMaterialAsync(Guid id);
     }
 }

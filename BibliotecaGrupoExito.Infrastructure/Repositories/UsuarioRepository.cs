@@ -35,9 +35,9 @@ namespace BibliotecaGrupoExito.Infrastructure.Repositories
             return await _context.Usuarios.FindAsync(id);
         }
 
-        public async Task<Usuario?> GetByIdentificacionAsync(string identificacion)
+        public async Task<Usuario?> GetByIdentificationAsync(string identificacion)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Identificacion == identificacion);
+            return await _context.Usuarios.FirstOrDefaultAsync(u => u.Identificacion.ToLower() == identificacion.ToLower());
         }
 
         public async Task UpdateAsync(Usuario usuario)
