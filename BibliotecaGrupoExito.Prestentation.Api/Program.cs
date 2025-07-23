@@ -1,9 +1,10 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using BibliotecaGrupoExito.Application.IoC; // Para ApplicationModule
-using BibliotecaGrupoExito.Infrastructure.IoC; // Para InfrastructureModule
-using BibliotecaGrupoExito.Infrastructure.Data; // Para DbContext
-using Microsoft.EntityFrameworkCore; // Para UseSqlServer
+using BibliotecaGrupoExito.Application.IoC; 
+using BibliotecaGrupoExito.Infrastructure.IoC; 
+using BibliotecaGrupoExito.Infrastructure.Data; 
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,6 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 // Configurar el contenedor de Autofac
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
-    // Obtener la cadena de conexión de appsettings.json
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     if (string.IsNullOrEmpty(connectionString))
     {
@@ -29,8 +29,16 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// builder.Services.AddEndpointsApiExplorer(); // Descomentar si usas Minimal APIs o quieres explorar los endpoints
- builder.Services.AddSwaggerGen(); // Descomentar si usas Swagger/OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options=>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Biblioteca Grupo Éxito API",
+        Version = "v1",
+        Description = "API para la gestión de materiales, usuarios y préstamos de la biblioteca del Grupo Éxito."
+    });
+});
 
 var app = builder.Build();
 
@@ -38,21 +46,22 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Biblioteca Grupo Éxito API v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
-app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-// Opcional: Aplicar migraciones al iniciar la aplicación (solo para desarrollo/pruebas)
-// Considera herramientas como DbUp para producción para migraciones más robustas.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    //dbContext.Database.Migrate(); // Aplica las migraciones pendientes
 }
 
 app.Run();
