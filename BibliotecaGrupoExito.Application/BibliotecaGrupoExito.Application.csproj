@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BibliotecaGrupoExito.Domain\BibliotecaGrupoExito.Domain.csproj" />
+    <ProjectReference Include="..\BibliotecaGrupoExito.Infrastructure\BibliotecaGrupoExito.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

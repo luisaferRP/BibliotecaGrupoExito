@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BibliotecaGrupoExito.Domain.Enums
 {
-    internal class TipoMaterial
+    public enum TipoMaterial
     {
+        Libro = 0,
+        Revista = 1
     }
 }

@@ -17,6 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BibliotecaGrupoExito.Application\BibliotecaGrupoExito.Application.csproj" />
+    <ProjectReference Include="..\BibliotecaGrupoExito.Domain\BibliotecaGrupoExito.Domain.csproj" />
+    <ProjectReference Include="..\BibliotecaGrupoExito.Infrastructure\BibliotecaGrupoExito.Infrastructure.csproj" />
+    <ProjectReference Include="..\BibliotecaGrupoExito.Prestentation.Api\BibliotecaGrupoExito.Prestentation.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
