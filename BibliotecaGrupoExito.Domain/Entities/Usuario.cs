@@ -11,8 +11,6 @@ namespace BibliotecaGrupoExito.Domain.Entities
         public Guid Id { get; set; }
         public string Identificacion { get; set; } = string.Empty;
         public string Nombre { get; set; } = string.Empty;
-
-        // Propiedad de navegación para Entity Framework
         public ICollection<Prestamo> Prestamos { get; set; } = new List<Prestamo>();
     }
 }

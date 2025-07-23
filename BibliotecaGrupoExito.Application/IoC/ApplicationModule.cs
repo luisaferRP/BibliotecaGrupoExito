@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using BibliotecaGrupoExito.Application.Services; // Asumiendo que crearás PrestamoService aquí
-using BibliotecaGrupoExito.Application.Interfaces; // Asumiendo que crearás IPrestamoService aquí
+using BibliotecaGrupoExito.Application.Services; 
+using BibliotecaGrupoExito.Application.Interfaces; 
 
 namespace BibliotecaGrupoExito.Application.IoC
 {
