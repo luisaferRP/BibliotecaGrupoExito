@@ -10,7 +10,7 @@ namespace BibliotecaGrupoExito.Domain.Interfaces
     public interface IUsuarioRepository
     {
         Task<Usuario?> GetByIdAsync(Guid id);
-        Task<Usuario?> GetByIdentificacionAsync(string identificacion);
+        Task<Usuario?> GetByIdentificationAsync(string identificacion);
         Task AddAsync(Usuario usuario);
         Task UpdateAsync(Usuario usuario);
         Task DeleteAsync(Guid id);

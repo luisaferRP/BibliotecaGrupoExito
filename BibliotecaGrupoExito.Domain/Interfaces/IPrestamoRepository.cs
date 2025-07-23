@@ -12,6 +12,8 @@ namespace BibliotecaGrupoExito.Domain.Interfaces
         Task<Prestamo?> GetByIdAsync(Guid id);
         Task AddAsync(Prestamo prestamo);
         Task UpdateAsync(Prestamo prestamo);
-        Task<IEnumerable<Prestamo>> GetPrestamosActivosByIsbnAsync(long isbn);
+        Task DeleteAsync(Guid id);
+        Task<IEnumerable<Prestamo>> GetAssetLoansByIsbnAsync(string isbn);
+        Task<IEnumerable<Prestamo>> GetLoansByUserIdAsync(Guid userId);
     }
 }

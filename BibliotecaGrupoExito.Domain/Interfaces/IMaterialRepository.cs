@@ -10,8 +10,8 @@ namespace BibliotecaGrupoExito.Domain.Interfaces
     public interface IMaterialRepository
     {
         Task<Material?> GetByIdAsync(Guid id);
-        Task<Material?> GetByIsbnAsync(long isbn);
-        Task<bool> IsMaterialAvailableAsync(long isbn); 
+        Task<Material?> GetByIsbnAsync(string isbn);
+        Task<bool> IsMaterialAvailableAsync(string isbn); 
         Task AddAsync(Material material);
         Task UpdateAsync(Material material);
         Task DeleteAsync(Guid id);
